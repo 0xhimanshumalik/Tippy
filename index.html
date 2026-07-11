@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tippy — Stellar Tip Jar</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🫙</text></svg>" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="header">
+        <h1>🫙 Tippy</h1>
+        <p class="tagline">A tip jar on the Stellar testnet — tips paid in XLM</p>
+      </header>
+
+      <main class="grid">
+        <!-- Tip jar card: QR code + recipient address -->
+        <section class="card">
+          <h2>Scan to tip</h2>
+          <div class="qr-wrap">
+            <canvas id="qr-canvas"></canvas>
+          </div>
+          <p class="label">Tip jar address</p>
+          <div class="address-row">
+            <code id="tipjar-address" class="address"></code>
+            <button id="copy-btn" class="btn btn-small" title="Copy address">Copy</button>
+          </div>
+          <p class="hint">
+            Scan the QR code with any Stellar wallet, or connect Freighter below
+            to tip directly from this page.
+          </p>
+        </section>
+
+        <!-- Wallet card: connect / disconnect / balance -->
+        <section class="card">
+          <h2>Your wallet</h2>
+
+          <div id="wallet-disconnected">
+            <p class="hint">
+              Connect your Freighter wallet (set to <strong>Testnet</strong>) to
+              see your balance and send a tip.
+            </p>
+            <button id="connect-btn" class="btn btn-primary">
+              Connect Freighter
+            </button>
+            <p id="freighter-missing" class="error hidden">
+              Freighter not detected.
+              <a href="https://www.freighter.app/" target="_blank" rel="noreferrer">Install the extension</a>
+              and refresh this page.
+            </p>
+          </div>
+
+          <div id="wallet-connected" class="hidden">
+            <p class="label">Connected account</p>
+            <div class="address-row">
+              <code id="wallet-address" class="address"></code>
+            </div>
+
+            <p class="label">XLM balance</p>
+            <div class="balance-row">
+              <span id="wallet-balance" class="balance">—</span>
+              <button id="refresh-btn" class="btn btn-small">Refresh</button>
+            </div>
+
+            <button id="disconnect-btn" class="btn btn-danger">Disconnect</button>
+          </div>
+        </section>
+
+        <!-- Tip form -->
+        <section class="card card-wide">
+          <h2>Send a tip</h2>
+
+          <div class="presets">
+            <button class="btn preset" data-amount="5">5 XLM</button>
+            <button class="btn preset" data-amount="10">10 XLM</button>
+            <button class="btn preset" data-amount="25">25 XLM</button>
+          </div>
+
+          <div class="form-row">
+            <label for="amount-input">Amount (XLM)</label>
+            <input
+              id="amount-input"
+              type="number"
+              min="0.0000001"
+              step="any"
+              placeholder="10"
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="memo-input">Message (optional, max 28 chars)</label>
+            <input id="memo-input" type="text" maxlength="28" placeholder="Thanks for the coffee ☕" />
+          </div>
+
+          <button id="tip-btn" class="btn btn-primary" disabled>
+            Connect wallet to tip
+          </button>
+
+          <!-- Transaction feedback -->
+          <div id="tx-status" class="status hidden"></div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>
+          Running on <strong>Stellar Testnet</strong> · funded with
+          <a href="https://laboratory.stellar.org/#account-creator?network=test" target="_blank" rel="noreferrer">Friendbot</a>
+          test lumens · no real money involved
+        </p>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
