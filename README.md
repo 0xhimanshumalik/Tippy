@@ -130,6 +130,34 @@ npm run preview   # serve the production build locally
 5. The page shows the result — on success, the transaction hash links to the
    block explorer; on failure, the reason is displayed.
 
+## Screenshots
+
+### Landing page (before connecting)
+
+![Tip jar page before wallet connect](screenshots/BeforeWalletConnect.png)
+
+### Wallet connected state & balance displayed
+
+The connected Freighter account and its live XLM balance, fetched from Horizon:
+
+![Wallet connected with XLM balance shown](screenshots/WalletConnect.png)
+
+### Successful testnet transaction — result shown to the user
+
+After signing in Freighter, the page shows the success state with the
+transaction hash linked to the block explorer, and the sender's balance
+updates:
+
+![Successful tip with transaction hash shown in the UI](screenshots/TransDone.png)
+
+### Transaction confirmed on-chain
+
+The same transaction on stellar.expert —
+[`27b145f210afa4c36146d7d86acbc8c8f2a6369f7d546849738bf7f57993c5fa`](https://stellar.expert/explorer/testnet/tx/27b145f210afa4c36146d7d86acbc8c8f2a6369f7d546849738bf7f57993c5fa)
+(25 XLM tip, status **Successful**):
+
+![Transaction confirmed on stellar.expert](screenshots/Explorar.png)
+
 ## Configuration
 
 The tip jar (recipient) account lives in [`src/config.js`](src/config.js):
